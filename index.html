@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Lil MineSweeper</title>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/fontawesome-free-5.3.1-web/css/all.css">
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="libs/jquery-3.3.1.min.js"></script>
+
+</head>
+
+<body onload="initBoard()">
+    <div class="container">
+
+        <!-- MENU -->
+        <header>
+            <div class="timer info menu invisible">Game Time:
+                <span></span>
+            </div>
+            <div>
+                <button class="btn menu" onclick="initBoard()">Play</button>
+            </div>
+            <div class="icon menu">
+                <i class="fas fa-smile"></i>
+            </div>
+            <div class="dropdown">
+                <button class="btn menu dropbtn">Difficulty</button>
+                <div class="dropdown-content">
+                    <div onmouseup="changeLevel(0)">10 x 10</div>
+                    <div onmouseup="changeLevel(1)">15 x 15</div>
+                    <div onmouseup="changeLevel(2)">20 x 20</div>
+                </div>
+            </div>
+            <div class="flags info menu invisible">Flags left:
+                <span></span>
+            </div>
+        </header>
+
+        <!-- TABLE -->
+        <table class="minefield">
+            <tbody></tbody>
+        </table>
+
+        <!-- GAME OVER MODAL BOX -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn menu" onclick="initBoard()" data-dismiss="modal">Play</button>
+                        <button type="button" class="btn btn-default menu" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p class="copyright">Copyleft
+                <span class="copyleft">&copy;</span> 2018</p>
+        </footer>
+    </div>
+
+    <script src="js/mouseclickboth.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
+
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

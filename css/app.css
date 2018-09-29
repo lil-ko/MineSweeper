@@ -1,0 +1,158 @@
+body {
+    background-color: white;
+    color: green;
+}
+
+.container{
+    text-align: center;  
+    width: 900px;
+    margin: auto;
+    padding: 10px;
+    background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#E6F4C1 100%);
+    box-shadow: inset 0 0 40px green;  
+    position: relative;
+    user-select: none;
+}
+
+/* Flex Menu */
+header {
+    display: flex;  
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+header div {
+    align-content: center;
+}
+
+.menu {
+    padding: 10px 40px;
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+} 
+/* Flex Menu - end */
+
+/* Buttons */
+.btn{
+    border-radius: 3px;
+    color: #FFF;
+    width: 140px;    
+    text-decoration: none;	
+    background-color: green;
+    border-bottom: 5px solid rgb(7, 98, 7);
+    text-shadow: 0px -2px green;
+    transition: all 0.1s;
+    -webkit-transition: all 0.1s;
+}
+
+*:focus {
+    outline: none;
+}
+
+.btn:active{
+    transform: translate(0px,5px);
+    border-bottom: 1px solid;
+}
+/* Buttons - end */
+
+i {
+    font-size: 230%;
+}
+
+/* Difficulty Dropdown menu */ 
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FAFEDD;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: inset 0 0 20px green;
+    z-index: 1;
+}
+
+.dropdown-content div {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content div:hover {background-color: #74B537;}
+
+.dropdown:active .dropdown-content {display: block;} 
+/* Difficulty Dropdown menu - end */ 
+
+.info {
+    width: 200px; 
+    white-space: nowrap;
+}
+
+table{
+    text-align: center; 
+    margin: 20px auto;
+}
+
+table td {
+    width: 40px;
+    max-width: 40px;
+    height: 40px;
+    max-height: 40px;
+    border: 1px white solid;
+    background-color: #E6F4C1;
+    color: white;
+    font-weight: bold;
+    font-size: 150%;
+    box-shadow: inset 0 0 10px black;
+}
+
+/* GAME OVER MODAL BOX */
+.modal{
+    margin-top: 100px;
+}
+
+p, .modal-header h4 {
+    color: black;
+    text-align: center;
+}
+  
+.modal-header {
+  display: block;
+}
+/* GAME OVER MODAL BOX - end */
+
+.flipped {
+    background-color: green;
+    color: white;
+    box-shadow: inset 0 0 10px black;
+}
+
+.flipped:hover {
+    background:rgb(128, 204, 131);   
+}
+
+.board-disabled {
+    pointer-events: none;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+p.copyright {
+    position: absolute; 
+    z-index: -1; 
+	width: 100%;
+    line-height: 30px;
+	text-align: center;
+    bottom:0;
+    font-weight: bold;
+}
+
+.copyleft {
+    display:inline-block;
+    transform: rotate(180deg);
+}
