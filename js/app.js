@@ -87,45 +87,6 @@ function addMines(clickedCellI, clickedCellJ) {
     setMinesNegsCount(board);
 }
 
-function setMinesNegsCount(board) {
-    let SIZE = gLevels[gCurrLevel].SIZE;
-    for (let i = 0; i < SIZE; i++) {
-        for (let j = 0; j < SIZE; j++) {
-            board[i][j].minesAroundCount = getMinesAroundCount(board, i, j);
-        }
-    }
-}
-
-function cellClicked(event, i, j) {
-    if (!gState.isGameOn) {
-        startGame(i, j);
-    }
-    // right button
-    if (event.button === 2) {
-        if (!gBoard[i][j].isMarked && !gBoard[i][j].isShown) {
-            gBoard[i][j].isMarked = true;
-            gState.markedCount++;
-        } else if (gBoard[i][j].isMarked) {
-            gBoard[i][j].isMarked = false;
-            gState.markedCount--;
-        }
-        let flagsLeft = gLevels[gCurrLevel].MINES - gState.markedCount;
-        document.querySelector('.flags span').innerHTML = flagsLeft;
-        // left button
-    } else if (event.button === 0) {
-        if (gBoard[i][j].isMarked) return;
-        if (!gBoard[i][j].isShown) {
-            gState.shownCount++;
-            gBoard[i][j].isShown = true;
-        }
-        // Show all empty
-        expandShown(i, j);
-        checkGameOver(i, j);
-    }
-    renderCell(i, j);
-}
-
-
 function checkGameOver(i, j) {
 
     if (gBoard[i][j].isMine) {

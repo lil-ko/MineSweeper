@@ -15,7 +15,9 @@ function displayEmptyBoard() {
         strHTML += '<tr>';
         for (let j = 0; j < boardSize; j++) {
             let className = `cell cell-${i}-${j} flipped`;
-            strHTML += `<td class="${className}" onmousedown="cellClicked(event, ${i}, ${j})"> </td>`;
+            //strHTML += `<td class="${className}" onmouseup="cellClicked(event, ${i}, ${j})"> </td>`;
+            strHTML += `<td class="${className}"> </td>`;
+       
         }
         strHTML += '</tr>';
     }
@@ -47,6 +49,15 @@ function renderCell(i, j) {
             elCell.innerHTML = FLAG;
         } else if (!gBoard[i][j].isMarked) {
             elCell.innerHTML = '';
+        }
+    }
+}
+
+function setMinesNegsCount(board) {
+    let SIZE = gLevels[gCurrLevel].SIZE;
+    for (let i = 0; i < SIZE; i++) {
+        for (let j = 0; j < SIZE; j++) {
+            board[i][j].minesAroundCount = getMinesAroundCount(board, i, j);
         }
     }
 }

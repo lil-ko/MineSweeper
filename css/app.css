@@ -5,7 +5,7 @@ body {
 
 .container{
     text-align: center;  
-    width: 900px;
+    max-width: 100%;
     margin: auto;
     padding: 10px;
     background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#E6F4C1 100%);
@@ -107,6 +107,11 @@ table td {
     font-weight: bold;
     font-size: 150%;
     box-shadow: inset 0 0 10px black;
+}
+
+.mousedown-hover {
+    background-color: #E6F4C1;
+    color: #E6F4C1;
 }
 
 /* GAME OVER MODAL BOX */
