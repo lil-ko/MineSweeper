@@ -105,7 +105,7 @@ function toggleFlag(cellClassList) {
             gState.markedCount--;
         }
         let flagsLeft = gLevels[gCurrLevel].MINES - gState.markedCount;
-        document.querySelector('.flags span').innerHTML = flagsLeft;
+        document.querySelector('.flags-value').innerHTML = flagsLeft;
         renderCell(i, j);
     }    
 }
@@ -204,9 +204,8 @@ function openNeighbours(idx, jdx) {
                 gBoard[i][j].isShown = true;
 
                 renderCell(i, j);
-                checkGameOver(i, j);
-                if (!gState.isGameOn) return;
                 expandShown(i, j);
+                checkGameOver(i, j);
             }
         }
     }

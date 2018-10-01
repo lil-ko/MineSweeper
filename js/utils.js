@@ -111,6 +111,7 @@ function getMinesAroundCount(board, idx, jdx) {
 }
 
 function changeLevel(level) {
+    $(`.levels-modal-body div:nth-child(${gCurrLevel + 1})`).css('font-weight', 'normal');
     gCurrLevel = level;
     initBoard();
 }
@@ -158,6 +159,12 @@ function displayAll() {
     }
 }
 
+function resetStats() {
+    localStorage.setItem("minesSweeperBestTimeEasy", "0");
+    localStorage.setItem("minesSweeperBestTimeNormal", "0");
+    localStorage.setItem("minesSweeperBestTimeHard", "0");
+}
+
 function setTimer() {
     clearInterval(gTimerInterval);
     let startTime = new Date().getTime() / 1000;
@@ -167,7 +174,7 @@ function setTimer() {
         }
         let currTime = new Date().getTime() / 1000;
         gTime = (currTime - startTime).toFixed(0);
-        document.querySelector('.timer span').innerHTML = gTime;
+        document.querySelector('.timer-value').innerHTML = gTime;
     }, 10);
 }
 
@@ -183,9 +190,7 @@ function getBestTime() {
         case 2:
             bestTime = localStorage.getItem("minesSweeperBestTimeHard");
             break;
-        case 3:
-            bestTime = localStorage.getItem("minesSweeperBestTimeExpert");
-            break;
+
         default:
             bestTime = 0;
             break;
@@ -204,9 +209,7 @@ function setBestTime(bestTime) {
         case 2:
             localStorage.setItem("minesSweeperBestTimeHard", bestTime);
             break;
-        case 3:
-            localStorage.setItem("minesSweeperBestTimeExpert", bestTime);
-            break;
+
         default:
             bestTime = 0;
             break;

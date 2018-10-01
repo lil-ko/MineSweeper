@@ -1,0 +1,78 @@
+
+.container {
+    height:100%;
+    position: relative;
+}
+
+header { 
+    font-weight: bold;
+    background-color: white;
+    padding-top: 10px;
+}
+
+header img {
+    width: 30px;
+    height: 30px;
+    margin: 0 20px;
+}
+
+/* MAIN MENU */
+.menu ul {
+    display: flex;  
+    justify-content: flex-start;
+    list-style: none; 
+    padding: 0;
+}
+
+.menu li{
+    margin: 0 10px;
+    padding: 5px 10px; 
+}
+
+.menu li:hover, .modal-body div:hover {
+    background-color: rgb(212, 212, 243);
+    cursor: pointer;
+}
+/* MAIN MENU - end */
+
+
+/* GAME OVER MODAL BOX */
+.modal{
+    padding-top: 100px;
+}
+
+.modal-body, .modal-title{
+    text-align: center;
+}
+  
+.modal-header {
+  display: block;
+}
+/* GAME OVER MODAL BOX - end */
+
+.minefield-wrapper {
+    margin-bottom: 30px;
+}
+
+.board-disabled {
+    pointer-events: none;
+}
+
+/* FOOTER */
+p.copyright {
+    position: absolute; 
+    z-index: 1; 
+    width: 100%;
+	text-align: center;
+    bottom: 0;
+    margin: 0;
+    padding-bottom: 10px;
+    background-color: white;
+    font-weight: bold;
+}
+
+.copyleft {
+    display:inline-block;
+    transform: rotate(180deg);
+}
+/* FOOTER - end */

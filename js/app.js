@@ -1,8 +1,8 @@
 'use strict';
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-const MINE = '&#9881';
-const FLAG = '&#9873';
+const MINE = '<div class="mine"></div>';
+const FLAG = '<div class="flag"></div>';
 const PLAYER = '<i class="fas fa-smile"></i>';
 const WINNER = '<i class="fas fa-grin-stars"></i>';
 const LOSER = '<i class="fas fa-dizzy"></i>';
@@ -15,6 +15,11 @@ var gLevels = [
     { SIZE: 15, MINES: 45 },
     { SIZE: 20, MINES: 80 }
 ]
+var themes = [
+    { NAME: 'Classic Nerd', CSS: 'css/classic.css'},
+    { NAME: 'Upgraded Nerd', CSS: 'css/win10.css'},
+    { NAME: 'Young leprechaun', CSS: 'css/leprechaun.css'}
+];
 
 var gTimerInterval;
 var gCurrLevel = 0;
@@ -24,7 +29,7 @@ function initBoard() {
     if (!localStorage.getItem("minesSweeperBestTimeEasy")) { localStorage.setItem("minesSweeperBestTimeEasy", "0") }
     if (!localStorage.getItem("minesSweeperBestTimeNormal")) { localStorage.setItem("minesSweeperBestTimeNormal", "0") }
     if (!localStorage.getItem("minesSweeperBestTimeHard")) { localStorage.setItem("minesSweeperBestTimeHard", "0") }
-    if (!localStorage.getItem("minesSweeperBestTimeExpert")) { localStorage.setItem("minesSweeperBestTimeExpert", "0") }
+    if (!localStorage.getItem("minesSweeperTheme")) { localStorage.setItem("minesSweeperTheme", "1") }
 
     // reset gState
     resetGameState();
@@ -32,9 +37,11 @@ function initBoard() {
     displayEmptyBoard();
     gBoard = buildBoard();
     document.querySelector('table').classList.remove('board-disabled');
-    document.querySelector('.icon').innerHTML = PLAYER;
+    //document.querySelector('.icon').innerHTML = PLAYER;
     getBestTime();
 
+    // set theme
+    changeTheme(localStorage.getItem("minesSweeperTheme"));
 }
 
 function startGame(i, j) {
@@ -42,9 +49,7 @@ function startGame(i, j) {
     addMines(i, j);
     renderCells();
     setTimer();
-    document.querySelector('.timer').classList.remove('invisible');
-    document.querySelector('.flags').classList.remove('invisible');
-    document.querySelector('.flags span').innerHTML = gLevels[gCurrLevel].MINES;
+    document.querySelector('.flags-value').innerHTML = gLevels[gCurrLevel].MINES;
 }
 
 function buildBoard() {
@@ -101,26 +106,7 @@ function checkGameOver(i, j) {
 }
 
 function gameOver(result) {
-    document.querySelector('.timer').classList.add('invisible');
-    document.querySelector('.flags').classList.add('invisible');
     document.querySelector('table').classList.add('board-disabled');
+    openGameOverModal(result);
 
-    if (result === 'lost') {
-        document.querySelector('.icon').innerHTML = LOSER;
-        document.querySelector('.modal-title').innerHTML = 'GameOver';
-        document.querySelector('.modal-body').innerHTML = 'Better luck next time';
-    } else {
-        document.querySelector('.icon').innerHTML = WINNER;
-        document.querySelector('.modal-title').innerHTML = '!!! Victory !!!';
-        let strModalBody = `<p>Your time is ${gTime} </p>`;
-        if (getBestTime() > +gTime || getBestTime() === '0') {
-            strModalBody += `<p>You set a new record !!!</p>`;
-            setBestTime(gTime);
-        } else {
-            strModalBody += `<p>The best time is ${getBestTime()}</p>`;
-        }
-        document.querySelector('.modal-body').innerHTML = strModalBody;
-    }
-
-    $("#myModal").modal();
 }

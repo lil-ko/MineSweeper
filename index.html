@@ -4,56 +4,121 @@
 <head>
     <meta charset="utf-8" />
     <title>Lil MineSweeper</title>
+    <link rel="icon" type="image/png" href="img/minesweeper.png">
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="libs/fontawesome-free-5.3.1-web/css/all.css">
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link id="theme" rel="stylesheet" href="" />
     <script src="libs/jquery-3.3.1.min.js"></script>
 
 </head>
 
 <body onload="initBoard()">
     <div class="container">
-
-        <!-- MENU -->
-        <header>
-            <div class="timer info menu invisible">Game Time:
-                <span></span>
-            </div>
+        <!-- MENU - un affected by themes -->
+        <header class="sticky-top">
             <div>
-                <button class="btn menu" onclick="initBoard()">Play</button>
-            </div>
-            <div class="icon menu">
-                <i class="fas fa-smile"></i>
-            </div>
-            <div class="dropdown">
-                <button class="btn menu dropbtn">Difficulty</button>
-                <div class="dropdown-content">
-                    <div onmouseup="changeLevel(0)">10 x 10</div>
-                    <div onmouseup="changeLevel(1)">15 x 15</div>
-                    <div onmouseup="changeLevel(2)">20 x 20</div>
-                </div>
-            </div>
-            <div class="flags info menu invisible">Flags left:
-                <span></span>
+                <img src="img/minesweeper.png">Lil Minesweeper</div>
+            <div class="menu">
+                <ul>
+                    <li onclick="initBoard()">New game</li>
+                    <li onclick="openStatsModal()">Stats</li>
+                    <li onclick="openLevelsModal()">Level</li>
+                    <li onclick="openThemesModal()">Themes</li>
+                </ul>
             </div>
         </header>
 
-        <!-- TABLE -->
-        <table class="minefield">
-            <tbody></tbody>
-        </table>
-
-        <!-- GAME OVER MODAL BOX -->
-        <div id="myModal" class="modal fade" role="dialog">
+        <!-- STATS -->
+        <div id="statsModal" class="modal fade" role="dialog">
             <div class="modal-dialog modal-sm">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"></h4>
+                        <h4 class="modal-title">Statistics</h4>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body stats-modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn menu" onclick="resetStats()">Reset</button>
+                        <button type="button" class="btn btn-default menu" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEVELS -->
+        <div id="levelsModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Difficulty Levels</h4>
+                    </div>
+                    <div class="modal-body levels-modal-body">
+                        <div onclick="changeLevel(0)" data-dismiss="modal">Beginners 10 x 10</div>
+                        <div onclick="changeLevel(1)" data-dismiss="modal">Intermediate 15 x 15</div>
+                        <div onclick="changeLevel(2)" data-dismiss="modal">Advanced 20 x 20</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default menu" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THEMES -->
+        <div id="themesModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Themes</h4>
+                    </div>
+                    <div class="modal-body themes-modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default menu" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Themes-affected area -->
+        <div class="minefield-wrapper">
+            <div class="info">
+                <div class="timer">
+                    <div class="timer-icon"></div>
+                    <p class="timer-value"></p>
+                </div>
+                <div class="emoji"></div>
+                <div class="flags">
+                    <div class="flags-icon"></div>
+                    <p class="flags-value"></p>
+                </div>
+            </div>
+            <!-- TABLE -->
+            <table class="minefield">
+                <tbody></tbody>
+            </table>
+        </div>
+        <!-- Themes-affected area - ends -->
+
+        <!-- GAME OVER MODAL BOX -->
+        <div id="gameOverModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title game-over-modal-title"></h4>
+                    </div>
+                    <div class="modal-body game-over-modal-body">
                     </div>
                     <div class="modal-footer">
                         <button class="btn menu" onclick="initBoard()" data-dismiss="modal">Play</button>
@@ -64,12 +129,13 @@
         </div>
 
         <!-- FOOTER -->
-        <footer>
+        <footer class="fixed-bottom">
             <p class="copyright">Copyleft
                 <span class="copyleft">&copy;</span> 2018</p>
         </footer>
     </div>
 
+    <script src="js/modals.js"></script>
     <script src="js/mouseclicks.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/app.js"></script>
