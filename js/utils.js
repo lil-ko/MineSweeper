@@ -15,9 +15,7 @@ function displayEmptyBoard() {
         strHTML += '<tr>';
         for (let j = 0; j < boardSize; j++) {
             let className = `cell cell-${i}-${j} flipped`;
-            //strHTML += `<td class="${className}" onmouseup="cellClicked(event, ${i}, ${j})"> </td>`;
-            strHTML += `<td class="${className}"> </td>`;
-       
+             strHTML += `<td class="${className}"> </td>`;      
         }
         strHTML += '</tr>';
     }
@@ -112,6 +110,7 @@ function getMinesAroundCount(board, idx, jdx) {
 
 function changeLevel(level) {
     $(`.levels-modal-body div:nth-child(${gCurrLevel + 1})`).css('font-weight', 'normal');
+    localStorage.setItem("minesSweeperLevel", level);
     gCurrLevel = level;
     initBoard();
 }
@@ -174,7 +173,7 @@ function setTimer() {
         }
         let currTime = new Date().getTime() / 1000;
         gTime = (currTime - startTime).toFixed(0);
-        document.querySelector('.timer-value').innerHTML = gTime;
+        document.querySelector('.timer-value').innerHTML = ' ' + gTime;
     }, 10);
 }
 

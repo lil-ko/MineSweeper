@@ -16,13 +16,13 @@ var gLevels = [
     { SIZE: 20, MINES: 80 }
 ]
 var themes = [
-    { NAME: 'Classic Nerd', CSS: 'css/classic.css'},
-    { NAME: 'Upgraded Nerd', CSS: 'css/win10.css'},
-    { NAME: 'Young leprechaun', CSS: 'css/leprechaun.css'}
+    { NAME: 'Classic Nerd', CSS: 'css/classic.css' },
+    { NAME: 'Upgraded Nerd', CSS: 'css/win10.css' },
+    { NAME: 'Young leprechaun', CSS: 'css/leprechaun.css' }
 ];
 
 var gTimerInterval;
-var gCurrLevel = 0;
+var gCurrLevel;
 
 function initBoard() {
     // initialize LocalStorage if needed
@@ -30,6 +30,10 @@ function initBoard() {
     if (!localStorage.getItem("minesSweeperBestTimeNormal")) { localStorage.setItem("minesSweeperBestTimeNormal", "0") }
     if (!localStorage.getItem("minesSweeperBestTimeHard")) { localStorage.setItem("minesSweeperBestTimeHard", "0") }
     if (!localStorage.getItem("minesSweeperTheme")) { localStorage.setItem("minesSweeperTheme", "1") }
+    if (!localStorage.getItem("minesSweeperLevel")) {
+        localStorage.setItem("minesSweeperLevel", "0")
+        gCurrLevel = 0;
+    } else { gCurrLevel = +localStorage.getItem("minesSweeperLevel"); }
 
     // reset gState
     resetGameState();
@@ -37,8 +41,10 @@ function initBoard() {
     displayEmptyBoard();
     gBoard = buildBoard();
     document.querySelector('table').classList.remove('board-disabled');
+    document.querySelector('.flags-value').innerHTML = ' ' + gLevels[gCurrLevel].MINES;
+    setTimer();
     //document.querySelector('.icon').innerHTML = PLAYER;
-    getBestTime();
+
 
     // set theme
     changeTheme(localStorage.getItem("minesSweeperTheme"));
@@ -49,7 +55,6 @@ function startGame(i, j) {
     addMines(i, j);
     renderCells();
     setTimer();
-    document.querySelector('.flags-value').innerHTML = gLevels[gCurrLevel].MINES;
 }
 
 function buildBoard() {
