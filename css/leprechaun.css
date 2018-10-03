@@ -38,7 +38,7 @@ body {
     content: url("../img/alarm-clock-32.png")
 }
 
-.emoji::before  {
+#emoji::before  {
     content: url("../img/l.png")
 }
 
@@ -87,19 +87,27 @@ table td {
     background-image: url("../img/clover-24.png");
     background-position: center; 
     background-repeat: no-repeat;
-    height: 38px;
-    width: 38px; 
 }
 
 .mine {
     background-image: url("../img/rainbow.png");
     background-position: center; 
     background-repeat: no-repeat;
-    height: 40px;
-    width: 40px; 
 }
 
+.mines0 { color: #E6F4C1; }
+.mines1 { color: blue; }
+.mines2 { color: green; }
+.mines3 { color: red; }
+.mines4 { color: purple; }
+.mines5 { color: darkblue; }
+.mines6 { color: brown; }
+.mines7 { color: aqua; }
+.mines8 { color: white; }
 
+.mine-hit {
+    background-color: rgba(255, 0, 0, 0.5);
+}
 
 /* Buttons */
  .btn{

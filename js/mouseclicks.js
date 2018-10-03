@@ -42,7 +42,7 @@ $(document).on('mouseup', '.cell', function (e) {
         if (!isBothBtnsEvent) {
             openCell(cellLocaton);
         } else {
-            openAreaAroundCell(cellLocaton)
+            openAreaAroundCell(cellLocaton);
         }
     } else if (e.which === 3) {
         isRightBtnDown = false;
@@ -119,6 +119,7 @@ function highlightAreaAroundCell(cellLocaton) {
             if (j < 0 || j >= gBoard.length) continue;
             if (i === idx && j === jdx) continue;
             if (gBoard[i][j].isMarked) continue;
+            if (gBoard[i][j].isShown) continue;
             
             let table = $("table tbody")[0];
             let cell = table.rows[i].cells[j];

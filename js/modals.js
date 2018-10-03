@@ -27,11 +27,15 @@ function openThemesModal() {
 
 function openGameOverModal(result) {
     if (result === 'lost') {
-        //document.querySelector('.icon').innerHTML = LOSER;
+        $('#emoji').removeClass();
+        $('#emoji').addClass('face-lost');
+
         document.querySelector('.game-over-modal-title').innerHTML = 'GameOver';
         document.querySelector('.game-over-modal-body').innerHTML = 'Better luck next time';
     } else {
-        //document.querySelector('.icon').innerHTML = WINNER;
+        $('#emoji').removeClass();
+        $('#emoji').addClass('face-won');
+
         document.querySelector('.game-over-modal-title').innerHTML = '!!! Victory !!!';
         let strHtml = `<p>Your time is ${gTime} </p>`;
         if (getBestTime() > +gTime || getBestTime() === '0') {

@@ -15,7 +15,7 @@ function displayEmptyBoard() {
         strHTML += '<tr>';
         for (let j = 0; j < boardSize; j++) {
             let className = `cell cell-${i}-${j} flipped`;
-             strHTML += `<td class="${className}"> </td>`;      
+            strHTML += `<td class="${className}"> </td>`;
         }
         strHTML += '</tr>';
     }
@@ -35,18 +35,22 @@ function renderCell(i, j) {
     let elCell = document.querySelector(`.cell-${i}-${j}`);
     if (gBoard[i][j].isShown) {
         if (gBoard[i][j].isMine) {
-            elCell.innerHTML = MINE;
-        } else if (gBoard[i][j].minesAroundCount > 0) {
-            colorNum(elCell, i, j);
+            //  elCell.innerHTML = MINE;
+            elCell.classList.add('mine');
         } else {
-            elCell.innerHTML = '';
+            //if (gBoard[i][j].minesAroundCount > 0) {
+            colorNum(elCell, i, j);
+            // } else {
+            //     elCell.innerHTML = '';
         }
         elCell.classList.remove('flipped');
     } else {
         if (gBoard[i][j].isMarked) {
-            elCell.innerHTML = FLAG;
+            //  elCell.innerHTML = FLAG;
+            elCell.classList.add('flag');
         } else if (!gBoard[i][j].isMarked) {
-            elCell.innerHTML = '';
+            // elCell.innerHTML = '';
+            elCell.classList.remove('flag');
         }
     }
 }
@@ -62,29 +66,32 @@ function setMinesNegsCount(board) {
 
 function colorNum(elCell, i, j) {
     switch (gBoard[i][j].minesAroundCount) {
+        case 0:
+            elCell.classList.add('mines0');
+            break;
         case 1:
-            elCell.setAttribute("style", "color: blue;")
+            elCell.classList.add('mines1');
             break;
         case 2:
-            elCell.setAttribute("style", "color: green;")
+            elCell.classList.add('mines2');
             break;
         case 3:
-            elCell.setAttribute("style", "color: red;")
+            elCell.classList.add('mines3');
             break;
         case 4:
-            elCell.setAttribute("style", "color: purple;")
+            elCell.classList.add('mines4');
             break;
         case 5:
-            elCell.setAttribute("style", "color: darkblue;")
+            elCell.classList.add('mines5');
             break;
         case 6:
-            elCell.setAttribute("style", "color: brown;")
+            elCell.classList.add('mines6');
             break;
         case 7:
-            elCell.setAttribute("style", "color: aqua;")
+            elCell.classList.add('mines7');
             break;
         case 8:
-            elCell.setAttribute("style", "color: white;")
+            elCell.classList.add('mines8');
             break;
 
         default:

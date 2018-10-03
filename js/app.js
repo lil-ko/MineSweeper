@@ -1,12 +1,6 @@
 'use strict';
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-const MINE = '<div class="mine"></div>';
-const FLAG = '<div class="flag"></div>';
-const PLAYER = '<i class="fas fa-smile"></i>';
-const WINNER = '<i class="fas fa-grin-stars"></i>';
-const LOSER = '<i class="fas fa-dizzy"></i>';
-
 var gBoard;
 var gState;
 var gTime;
@@ -17,8 +11,8 @@ var gLevels = [
 ]
 var themes = [
     { NAME: 'Classic Nerd', CSS: 'css/classic.css' },
-    { NAME: 'Upgraded Nerd', CSS: 'css/win10.css' },
-    { NAME: 'Young leprechaun', CSS: 'css/leprechaun.css' }
+    { NAME: 'Upgraded Nerd (under consrtuction)', CSS: 'css/win10.css' },
+    { NAME: 'Young Leprechaun', CSS: 'css/leprechaun.css' }
 ];
 
 var gTimerInterval;
@@ -43,8 +37,10 @@ function initBoard() {
     document.querySelector('table').classList.remove('board-disabled');
     document.querySelector('.flags-value').innerHTML = ' ' + gLevels[gCurrLevel].MINES;
     setTimer();
-    //document.querySelector('.icon').innerHTML = PLAYER;
 
+    //reset emoji
+    $('#emoji').removeClass();
+    $('#emoji').addClass('face-smile');
 
     // set theme
     changeTheme(localStorage.getItem("minesSweeperTheme"));
@@ -101,6 +97,8 @@ function checkGameOver(i, j) {
 
     if (gBoard[i][j].isMine) {
         gState.isGameOn = false;
+        let elCell = document.querySelector(`.cell-${i}-${j}`);
+        elCell.classList.add('mine-hit');
         gameOver('lost');
         displayAll();
 
