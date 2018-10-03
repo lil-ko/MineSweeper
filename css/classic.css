@@ -18,9 +18,9 @@ body {
 	overflow: hidden;
 } 
 
-.info div {
+/* .info div {
      
-}
+} */
 
 .flags-value { left: 0; }
 .timer-value { right: 0; }
@@ -46,14 +46,16 @@ body {
 	background: url('../img/classic_sprite.png') no-repeat;
 }
 
-#emoji:active {
-	background-position: -26px -55px !important;
+#emoji.face-smile:active,
+#emoji.face-lost:active,
+#emoji.face-won:active {
+	background-position: -26px -55px;
 }
 
-.face-smile { background-position: 0 -55px !important;}
-.face-surprised  { background-position: -52px -55px !important; }
-.face-lost  { background-position: -78px -55px !important; }
-.face-won { background-position: -104px -55px !important; }
+#emoji.face-smile { background-position: 0 -55px;}
+#emoji.face-surprised  { background-position: -52px -55px; }
+#emoji.face-lost  { background-position: -78px -55px; }
+#emoji.face-won { background-position: -104px -55px; }
 
 table{
     position: relative;

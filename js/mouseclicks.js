@@ -13,6 +13,9 @@ $(document).on('mousedown', 'body', function (e) {
 });
 
 $(document).on('mousedown', '.cell', function (e) {
+    $('#emoji').removeClass();
+    $('#emoji').addClass('face-surprised');
+
     if (e.which === 1) {
         isLeftBtnDown = true;
     } else if (e.which === 3) {
@@ -26,6 +29,11 @@ $(document).on('mousedown', '.cell', function (e) {
 });
 
 $(document).on('mouseup', 'body', function (e) {
+    if (gState.isGameOn) {
+        $('#emoji').removeClass();
+        $('#emoji').addClass('face-smile');
+    }
+
     if (e.which === 1) {
         isLeftBtnDown = false;
     } else if (e.which === 3) {
@@ -34,7 +42,6 @@ $(document).on('mouseup', 'body', function (e) {
     checkBothMouseBtnsDown();
 });
 
-// !!!
 $(document).on('mouseup', '.cell', function (e) {
     cellLocaton = getLocation($(this).attr('class'));
     if (e.which === 1) {
@@ -107,7 +114,7 @@ function toggleFlag(cellClassList) {
         let flagsLeft = gLevels[gCurrLevel].MINES - gState.markedCount;
         document.querySelector('.flags-value').innerHTML = ' ' + flagsLeft;
         renderCell(i, j);
-    }    
+    }
 }
 
 function highlightAreaAroundCell(cellLocaton) {
@@ -120,7 +127,7 @@ function highlightAreaAroundCell(cellLocaton) {
             if (i === idx && j === jdx) continue;
             if (gBoard[i][j].isMarked) continue;
             if (gBoard[i][j].isShown) continue;
-            
+
             let table = $("table tbody")[0];
             let cell = table.rows[i].cells[j];
             cell.classList.add('mousedown-hover');
@@ -211,7 +218,7 @@ function openNeighbours(idx, jdx) {
         }
     }
 }
- 
+
 function isCellFlipped(cellClassList) {
     let location = getLocation(cellClassList);
     let i = location[0];
