@@ -35,21 +35,16 @@ function renderCell(i, j) {
     let elCell = document.querySelector(`.cell-${i}-${j}`);
     if (gBoard[i][j].isShown) {
         if (gBoard[i][j].isMine) {
-            //  elCell.innerHTML = MINE;
             elCell.classList.add('mine');
         } else {
-            //if (gBoard[i][j].minesAroundCount > 0) {
             colorNum(elCell, i, j);
-            // } else {
-            //     elCell.innerHTML = '';
         }
         elCell.classList.remove('flipped');
     } else {
         if (gBoard[i][j].isMarked) {
-            //  elCell.innerHTML = FLAG;
+
             elCell.classList.add('flag');
         } else if (!gBoard[i][j].isMarked) {
-            // elCell.innerHTML = '';
             elCell.classList.remove('flag');
         }
     }
@@ -180,7 +175,7 @@ function setTimer() {
         }
         let currTime = new Date().getTime() / 1000;
         gTime = (currTime - startTime).toFixed(0);
-        document.querySelector('.timer-value').innerHTML = ' ' + gTime;
+        document.querySelector('.timer-value').innerHTML = convertNumToDigitsElement(gTime);
     }, 10);
 }
 
@@ -221,6 +216,17 @@ function setBestTime(bestTime) {
             break;
     }
     return bestTime;
+}
+
+function convertNumToDigitsElement(num) {
+    let digits = num.toString().split('');
+    let strHTML = '';
+    digits.forEach(char => {
+        strHTML += `<div id="digit" class="d${char}"></div>`;
+    });
+    console.log('num', num);
+    console.log('strHTML', strHTML);
+    return strHTML;
 }
 
 function getRandomInt(min, max) {

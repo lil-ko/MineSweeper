@@ -112,7 +112,7 @@ function toggleFlag(cellClassList) {
             gState.markedCount--;
         }
         let flagsLeft = gLevels[gCurrLevel].MINES - gState.markedCount;
-        document.querySelector('.flags-value').innerHTML = ' ' + flagsLeft;
+        document.querySelector('.flags-value').innerHTML = convertNumToDigitsElement(flagsLeft);
         renderCell(i, j);
     }
 }

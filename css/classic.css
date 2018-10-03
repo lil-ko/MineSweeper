@@ -18,10 +18,6 @@ body {
 	overflow: hidden;
 } 
 
-/* .info div {
-     
-} */
-
 .flags-value { left: 0; }
 .timer-value { right: 0; }
 
@@ -30,6 +26,7 @@ body {
 	overflow: hidden;
 	position: absolute;
 	top: 1px;
+	display: inline-block;
 	z-index: 1;
 	border: 1px solid;
 	border-color: #808080 #fff #fff #808080;
@@ -97,14 +94,22 @@ table td {
     background: url('../img/classic_sprite.png') 0px -24px;
 }
 
-.numbers .t0 { background-position: 0 0; }
-.numbers .t1 { background-position: -13px 0; }
-.numbers .t2 { background-position: -26px 0; }
-.numbers .t3 { background-position: -39px 0; }
-.numbers .t4 { background-position: -52px 0; }
-.numbers .t5 { background-position: -65px 0; }
-.numbers .t6 { background-position: -78px 0; }
-.numbers .t7 { background-position: -91px 0; }
-.numbers .t8 { background-position: -104px 0; }
-.numbers .t9 { background-position: -117px 0; }
-.numbers .tm { background-position: -130px 0; }
+#digit {
+	height: 26px;
+	width: 13px;
+	float: left;
+	margin: 0 auto;
+	background: url('../img/classic_sprite.png') no-repeat;
+}
+
+#digit.d0 { background-position: 0 0; }
+#digit.d1 { background-position: -13px 0; }
+#digit.d2 { background-position: -26px 0; }
+#digit.d3 { background-position: -39px 0; }
+#digit.d4 { background-position: -52px 0; }
+#digit.d5 { background-position: -65px 0; }
+#digit.d6 { background-position: -78px 0; }
+#digit.d7 { background-position: -91px 0; }
+#digit.d8 { background-position: -104px 0; }
+#digit.d9 { background-position: -117px 0; }
+#digit.d- { background-position: -130px 0; }

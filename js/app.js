@@ -35,7 +35,7 @@ function initBoard() {
     displayEmptyBoard();
     gBoard = buildBoard();
     document.querySelector('table').classList.remove('board-disabled');
-    document.querySelector('.flags-value').innerHTML = ' ' + gLevels[gCurrLevel].MINES;
+    document.querySelector('.flags-value').innerHTML = convertNumToDigitsElement(gLevels[gCurrLevel].MINES);
     setTimer();
 
     //reset emoji
